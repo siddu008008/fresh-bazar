@@ -25,9 +25,9 @@ const AdminDashboard = () => {
       setLoading(true);
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
       const [prodRes, ordRes, usersRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/products'),
-        axios.get('http://localhost:5000/api/orders', config),
-        axios.get('http://localhost:5000/api/auth/users', config)
+        axios.get("https://fresh-bazar.onrender.com/api/products"),
+        axios.get("https://fresh-bazar.onrender.com/api/orders", config),
+        axios.get("https://fresh-bazar.onrender.com/api/auth/users", config)
       ]);
       setProducts(prodRes.data);
       setOrders(ordRes.data);
@@ -43,11 +43,11 @@ const AdminDashboard = () => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
       if (editingProductId) {
-        await axios.patch(`http://localhost:5000/api/products/${editingProductId}`, newProduct, config);
+        await axios.patch(`https://fresh-bazar.onrender.com/api/products/${editingProductId}`, newProduct, config);
         toast.success('Product Updated');
         setEditingProductId(null);
       } else {
-        await axios.post('http://localhost:5000/api/products', newProduct, config);
+        await axios.post('https://fresh-bazar.onrender.com/api/products', newProduct, config);
         toast.success('Product Added');
       }
       setNewProduct({ name: '', brand: '', price: '', discountPrice: '', description: '', category: '', image: '', stock: '', unit: '', pricingOptions: [] });
@@ -98,7 +98,7 @@ const AdminDashboard = () => {
     if(!window.confirm('Delete this product?')) return;
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.delete(`http://localhost:5000/api/products/${id}`, config);
+      await axios.delete(`https://fresh-bazar.onrender.com/api/products/${id}`, config);
       toast.success('Product Deleted');
       fetchData();
     } catch(err) {
@@ -109,7 +109,7 @@ const AdminDashboard = () => {
   const handleRoleChange = async (userId, newRole) => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.patch(`http://localhost:5000/api/auth/users/${userId}/role`, { role: newRole }, config);
+      await axios.patch(`https://fresh-bazar.onrender.com/api/auth/users/${userId}/role`, { role: newRole }, config);
       toast.success('User role updated');
       fetchData();
     } catch(err) {
