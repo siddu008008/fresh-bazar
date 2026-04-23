@@ -14,7 +14,7 @@ const Orders = () => {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
         // Using user.uid as requested: /api/orders/user/:userId
-        const { data } = await axios.get(`http://localhost:5000/api/orders/user/${user.uid}`, config);
+        const { data } = await axios.get(`https://fresh-bazar.onrender.com/api/orders/user/${user.uid}`, config);
         setOrders(data);
         setLoading(false);
       } catch (error) {
