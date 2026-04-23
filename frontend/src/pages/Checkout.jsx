@@ -50,7 +50,7 @@ const Checkout = () => {
                 phone: phone,
             };
             
-            const { data } = await axios.post('http://localhost:5000/api/orders', orderData, config);
+            const { data } = await axios.post('https://fresh-bazar.onrender.com/api/orders', orderData, config);
             
             toast.success('Order placed successfully!');
             clearCart();
